@@ -9,6 +9,9 @@ net.ipv6.conf.default.disable_ipv6 = 1
 net.ipv6.conf.lo.disable_ipv6 = 1
 EOT
 sysctl -p
+
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+apt-get install -y nodejs
 SCRIPT
 
 Vagrant.configure(2) do |config|
