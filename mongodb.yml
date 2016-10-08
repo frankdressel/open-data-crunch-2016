@@ -1,0 +1,19 @@
+---
+- name: install mongodb
+  hosts: open-data-crunch
+  become: true
+
+  tasks:
+    - name: get aptitude for upgrade
+      apt: pkg=aptitude state=present
+
+    - name: remove existing mongodb
+      apt: pkg=mongodb-org state=absent
+
+    - name: setup mongo install
+      script: setupMongoInstall.sh
+
+    - name: install mongo
+      apt: pkg={{item}} state=present update_cache=yes
+      with_items:
+        - mongodb-org
