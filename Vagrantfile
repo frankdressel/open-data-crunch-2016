@@ -12,6 +12,9 @@ sysctl -p
 
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 apt-get install -y nodejs
+
+npm install -g brunch
+npm install -g bower
 SCRIPT
 
 Vagrant.configure(2) do |config|
@@ -19,6 +22,8 @@ Vagrant.configure(2) do |config|
   config.vm.box_check_update = false
 
   config.vm.network "public_network"
+  config.vm.network "forwarded_port", guest: 8000, host: 8000
+  config.vm.network "forwarded_port", guest: 27017, host: 27017
 
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
 
