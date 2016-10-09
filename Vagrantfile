@@ -33,5 +33,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "shell", inline: $script
+  
+  config.vm.provision "shell", run: "always", inline: "git clone https://github.com/frankdressel/open-data-crunch-2016.git /tmp/open-data-crunch-2016"
 
 end
