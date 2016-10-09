@@ -15,6 +15,8 @@ apt-get install -y nodejs
 
 npm install -g brunch
 npm install -g bower
+
+apt-get install python-pip
 SCRIPT
 
 Vagrant.configure(2) do |config|
