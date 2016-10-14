@@ -1,1 +1,21 @@
 *.swp
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/ddataninja/dist
+/ddataninja/tmp
+
+# dependencies
+/ddataninja/node_modules
+/ddataninja/bower_components
+
+# misc
+/ddataninja/.sass-cache
+/ddataninja/connect.lock
+/ddataninja/coverage/*
+/ddataninja/libpeerconnection.log
+/ddataninja/npm-debug.log
+/ddataninja/testem.log
+
+/backend/target
