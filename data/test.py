@@ -8,4 +8,9 @@ collection = db['test-collection']
 
 posts = db.posts
 
-posts.insert_one({'x': 51.039920, 'y': 13.734095, 'name': 'Hauptbahnhof'})
+posts.insert_one(
+        {
+            loc : { type: "Point", coordinates: [51.039920, 13.734095] },
+            name: "Hauptbahnhof"
+            }
+        )
