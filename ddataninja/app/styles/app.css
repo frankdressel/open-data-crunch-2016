@@ -1,0 +1,29 @@
+.menu {
+    height: 72px;
+}
+.inner {
+    height: -webkit-calc(100vh - 72px);
+    height: -moz-calc(100vh - 72px);
+    height: calc(100vh - 72px);
+}
+.score {
+    height: 50%;
+}
+.score img {
+    height: 100%;
+}
+.qr {
+    height: 50%;
+}
+.qr img {
+    height: 100%;
+}
+.outer {
+    height: 100vh;
+}
+#map {
+    height: 100%;
+}
+.leaflet-map {
+    height:100%;
+}

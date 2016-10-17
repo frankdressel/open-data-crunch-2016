@@ -37,7 +37,7 @@ test('should link to contact information', function (assert) {
 test('should show qr and score image.', function (assert) {
   visit('/intro-page');
   andThen(function () {
-      assert.equal(find('.qr-code').length, 1, 'should show qr code');
-      assert.equal(find('.score-image').length, 1, 'should show score image');
+      assert.equal(find('.qr-code img').length, 1, 'should show qr code');
+      assert.equal(find('.score-image img').length, 1, 'should show score image');
     });
 });
