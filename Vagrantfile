@@ -25,7 +25,11 @@ Vagrant.configure(2) do |config|
 
   config.vm.network "public_network"
   config.vm.network "forwarded_port", guest: 8000, host: 8000
-  config.vm.network "forwarded_port", guest: 27017, host: 27017
+  # Http port for mongo.
+  #config.vm.network "forwarded_port", guest: 28017, host: 28017
+  # Http port for ember
+  config.vm.network "forwarded_port", guest: 4200, host: 4200
+  config.vm.network "forwarded_port", guest: 8081, host: 8081
 
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
 
@@ -36,6 +40,6 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: $script
   
-  config.vm.provision "shell", run: "always", inline: "git clone https://github.com/frankdressel/open-data-crunch-2016.git /tmp/open-data-crunch-2016 %% chmod -R a+rwx /tmp/open-data-crunch-2016"
+  #config.vm.provision "shell", run: "always", inline: "git clone https://github.com/frankdressel/open-data-crunch-2016.git /tmp/open-data-crunch-2016 && chmod -R a+rwx /tmp/open-data-crunch-2016"
 
 end
