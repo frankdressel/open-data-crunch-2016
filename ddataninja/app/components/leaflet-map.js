@@ -25,7 +25,14 @@ export default Ember.Component.extend({
             $.getJSON('assets/stations.json', function(data){
                 data.forEach(function(station){
                     if(geolib.getDistance({'latitude': station.coordinates.x, 'longitude': station.coordinates.y}, {'latitude': e.latitude, 'longitude': e.longitude})<500){
-                        L.marker({'lat':station.coordinates.x, 'lng':station.coordinates.y}).addTo(map).bindPopup(station.name);
+                        var marker=L.marker({'lat':station.coordinates.x, 'lng':station.coordinates.y}).addTo(map);
+                        $.getJSON('http://localhost:8081/connection', {'start': station.name, 'end': 'Tannenstrasse'}, function(data){
+                            var text='';
+                            data.trips.forEach(function(trip){
+                                text=text+trip.nodes[0].line+'<br>'+trip.nodes[0].direction+'<br>departure: '+trip.departure+'<br>'+'arrival: '+trip.arrival+'<br>'+'duration: '+trip.duration+'<br><br>';
+                            });
+                            marker.bindPopup(text);
+                        });
                     }
                 });
             });
