@@ -15,11 +15,11 @@ app.use(function(req, res, next) {
 app.get('/connection', function(req, res){
     var origin = req.query.start;
     var destination = req.query.end;
-//g    console.log(origin);
+    var time=new Date(req.query.time);
+    //console.log(time);
 //g    console.log(destination);
 //g    res.end();
 
-    var time = new Date(); // starting at what time
     var deparr = dvb.route.DEPARTURE; // set to dvb.route.DEPARTURE for the time to be the departure time, dvb.route.ARRIVAL for arrival time
 
     dvb.route(origin, destination, time, deparr, function(err, data) {

@@ -24,14 +24,49 @@ export default Ember.Component.extend({
 
             $.getJSON('assets/stations.json', function(data){
                 data.forEach(function(station){
-                    if(geolib.getDistance({'latitude': station.coordinates.x, 'longitude': station.coordinates.y}, {'latitude': e.latitude, 'longitude': e.longitude})<500){
-                        var marker=L.marker({'lat':station.coordinates.x, 'lng':station.coordinates.y}).addTo(map);
-                        $.getJSON('http://localhost:8081/connection', {'start': station.name, 'end': 'Tannenstrasse'}, function(data){
-                            var text='';
-                            data.trips.forEach(function(trip){
+                    var dist=geolib.getDistance({'latitude': station.coordinates.x, 'longitude': station.coordinates.y}, {'latitude': e.latitude, 'longitude': e.longitude});
+                    var currentDate=new Date();
+                    if(dist<500){
+                        $.getJSON('http://localhost:8081/connection', {'start': station.name, 'end': 'Tannenstrasse', 'time': currentDate}, function(data){
+                            var trips=data.trips;
+                            trips.some(function(trip){
+                                var text='';
                                 text=text+trip.nodes[0].line+'<br>'+trip.nodes[0].direction+'<br>departure: '+trip.departure+'<br>'+'arrival: '+trip.arrival+'<br>'+'duration: '+trip.duration+'<br><br>';
+
+                                var newDate=new Date(currentDate.toString());
+                                newDate.setHours(0);
+                                newDate.setMinutes(0);
+                                var split=trip.departure.split(':');
+                                newDate.setHours(parseInt(split[0]));
+                                newDate.setMinutes(parseInt(split[1]));
+                                var deltaInMin=(newDate.getTime()-currentDate.getTime())/60000;
+                                console.log(newDate);
+                                console.log(currentDate);
+                                console.log(deltaInMin);
+
+                                if(deltaInMin>0){
+                                    var color='red';
+                                    if(deltaInMin>0&&deltaInMin*66.7*0.8>dist) {
+                                        color='green';
+                                    }
+                                    else {
+                                        if(deltaInMin>0&&deltaInMin*66.7>dist) {
+                                            color='yellow';
+                                        }
+                                    }
+
+                                    var marker = L.AwesomeMarkers.icon({
+                                        icon: trip.nodes[0].mode=='Stadtbus'?'bus':'subway',
+                                        markerColor: color,
+                                        prefix: 'fa'
+                                    });
+                                    var marker=L.marker({'lat':station.coordinates.x, 'lng':station.coordinates.y}, {icon: marker}).addTo(map);
+                                    marker.bindPopup(text);
+
+                                    return true;
+                                }
                             });
-                            marker.bindPopup(text);
+
                         });
                     }
                 });

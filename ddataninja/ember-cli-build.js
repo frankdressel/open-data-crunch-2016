@@ -21,9 +21,12 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
   app.import(app.bowerDirectory + '/bootstrap/dist/js/bootstrap.js');
   app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css');
+  app.import(app.bowerDirectory + '/font-awesome/css/font-awesome.css');
   app.import('vendor/leaflet/leaflet.js');
   app.import('vendor/leaflet/leaflet.css');
   app.import('vendor/geolib/geolib.min.js');
+  app.import('vendor/leaflet-awesome/leaflet.awesome-markers.css');
+  app.import('vendor/leaflet-awesome/leaflet.awesome-markers.js');
 
   return app.toTree();
 };
