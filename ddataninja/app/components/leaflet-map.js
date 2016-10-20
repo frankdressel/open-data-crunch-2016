@@ -31,20 +31,28 @@ export default Ember.Component.extend({
                             var trips=data.trips;
                             trips.some(function(trip){
                                 var text='';
-                                text=text+trip.nodes[0].line+'<br>'+trip.nodes[0].direction+'<br>departure: '+trip.departure+'<br>'+'arrival: '+trip.arrival+'<br>'+'duration: '+trip.duration+'<br><br>';
+                                for(var i =0; i<trip.nodes.length; i++){
+                                    var node=trip.nodes[i];
+                                    var start=(i==0?' from '+node.departure.stop:'');
+                                    text=text+node.departure.time+': '+node.line+start+' ('+node.direction+') &rarr; '+node.arrival.stop+'<br>';
+                                }
+                                var lastNode=trip.nodes[trip.nodes.length-1];
+                                text=text+'<u>'+lastNode.arrival.time+'</u>: '+lastNode.arrival.stop;
+                                console.log(text);
 
-                                var newDate=new Date(currentDate.toString());
-                                newDate.setHours(0);
-                                newDate.setMinutes(0);
                                 var split=trip.departure.split(':');
-                                newDate.setHours(parseInt(split[0]));
-                                newDate.setMinutes(parseInt(split[1]));
-                                var deltaInMin=(newDate.getTime()-currentDate.getTime())/60000;
-                                console.log(newDate);
-                                console.log(currentDate);
+                                var deltaInMin=0;
+                                var addedMinutes=currentDate.getHours()*60+currentDate.getMinutes()+parseInt(split[0])*60+parseInt(split[1]);
+                                if(addedMinutes>24*60){
+                                    deltaInMin=24*60-(currentDate.getHours()*60+currentDate.getMinutes())+parseInt(split[0])*60+parseInt(split[1]);
+                                }
+                                else {
+                                    deltaInMin=(parseInt(split[0])*60+parseInt(split[1]))-(currentDate.getHours()*60+currentDate.getMinutes());
+                                }
                                 console.log(deltaInMin);
+                                console.log(currentDate.getHours());
 
-                                if(deltaInMin>0){
+                                if(deltaInMin>0&&deltaInMin<30&&deltaInMin*66.7*1.2>dist){
                                     var color='red';
                                     if(deltaInMin>0&&deltaInMin*66.7*0.8>dist) {
                                         color='green';
