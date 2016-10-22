@@ -43,7 +43,7 @@ export default Ember.Component.extend({
                                 var split=trip.departure.split(':');
                                 var deltaInMin=0;
                                 var addedMinutes=currentDate.getHours()*60+currentDate.getMinutes()+parseInt(split[0])*60+parseInt(split[1]);
-                                if(addedMinutes>24*60){
+                                if(addedMinutes>24*60&&currentDate.getHours()>parseInt(split[0])){
                                     deltaInMin=24*60-(currentDate.getHours()*60+currentDate.getMinutes())+parseInt(split[0])*60+parseInt(split[1]);
                                 }
                                 else {
