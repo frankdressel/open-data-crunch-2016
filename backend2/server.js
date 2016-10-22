@@ -33,7 +33,7 @@ app.get('/connection', function(req, res){
     });
 })
 
-var port   = process.env.PORT
+var port   = process.env.PORT;
 var server = app.listen(port, function () {
    var host = server.address().address
    var port = server.address().port

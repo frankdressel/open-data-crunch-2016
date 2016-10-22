@@ -1,20 +1,25 @@
 <div class="container outer">
-  <div class="menu">
-    {{#link-to 'index'}}
-      <h1 class="left">
-        <em>NinjaX</em>
-      </h1>
-    {{/link-to}}
-    <div class="left links">
-      {{#link-to 'about'}}
-        About
-      {{/link-to}}
-      {{#link-to 'contact'}}
-        Contact
-      {{/link-to}}
+    <div class="menu">
+        <div class="left">
+            {{#link-to 'index'}}
+                <img src="ddataninja.png" style="height: 50px;">
+            {{/link-to}}
+            {{#link-to 'index'}}
+                <img src="lass_die_karre_stehn.png" style="height: 50px;float:right">
+            {{/link-to}}
+        </div>
+        <div class="left links">
+            {{#link-to 'about'}}
+                About
+            {{/link-to}}
+            {{#link-to 'contact'}}
+                Contact
+            {{/link-to}}
+            {{#target-link}}
+            {{/target-link}}
+        </div>
     </div>
-  </div>
-  <div class="body inner">
-    {{outlet}}
-  </div>
+    <div class="body inner">
+        {{outlet}}
+    </div>
 </div>

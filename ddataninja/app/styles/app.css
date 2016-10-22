@@ -10,13 +10,12 @@
     height: 50%;
 }
 .score img {
-    height: 100%;
-}
-.qr {
-    height: 50%;
+    max-height: 100px;
+    max-width: 400px:
 }
 .qr img {
-    height: 100%;
+    max-height: 400px;
+    max-width: 400px:
 }
 .outer {
     height: 100vh;
@@ -26,4 +25,7 @@
 }
 .leaflet-map {
     height:100%;
+}
+.target-link {
+    float: right;
 }
