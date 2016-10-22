@@ -3,6 +3,7 @@ var app = express();
 var dvb = require('dvbjs');
 // Taken from: https://code.ciphertrick.com/2015/02/25/get-post-requests-in-node-js-using-express-4/
 var bodyParser = require("body-parser");
+var moment = require('moment-timezone')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // Body parser use JSON data
@@ -15,8 +16,9 @@ app.use(function(req, res, next) {
 app.get('/connection', function(req, res){
     var origin = req.query.start;
     var destination = req.query.end;
-    var time=new Date(req.query.time);
-    //console.log(time);
+    console.log(req.query.time);
+    var time=moment.tz(time, "Europe/Berlin");
+    console.log(time);
 //g    console.log(destination);
 //g    res.end();
 
