@@ -17,7 +17,7 @@ app.get('/connection', function(req, res){
     var origin = req.query.start;
     var destination = req.query.end;
     console.log(req.query.time);
-    var time=moment.tz(time, "Europe/Berlin");
+    var time=new Date(req.query.time);
     console.log(time);
 //g    console.log(destination);
 //g    res.end();
@@ -33,7 +33,7 @@ app.get('/connection', function(req, res){
     });
 })
 
-var port   = process.env.PORT
+var port   = process.env.PORT;
 var server = app.listen(port, function () {
    var host = server.address().address
    var port = server.address().port
