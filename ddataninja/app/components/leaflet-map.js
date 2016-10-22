@@ -26,8 +26,12 @@ export default Ember.Component.extend({
                 data.forEach(function(station){
                     var dist=geolib.getDistance({'latitude': station.coordinates.x, 'longitude': station.coordinates.y}, {'latitude': e.latitude, 'longitude': e.longitude});
                     var currentDate=new Date();
+		    var UTCDate= new Date(currentDate);
+		    
+		    UTCDate.setHours(currentDate.getHours() + 2);
+ 
                     if(dist<500){
-                        $.getJSON('http://localhost:8081/connection', {'start': station.name, 'end': 'Tannenstrasse', 'time': currentDate}, function(data){
+                        $.getJSON('https://lass-die-karre-stehen.mybluemix.net/connection', {'start': station.name, 'end': 'Tannenstrasse', 'time': UTCDate}, function(data){
                             var trips=data.trips;
                             trips.some(function(trip){
                                 var text='';
@@ -42,15 +46,19 @@ export default Ember.Component.extend({
 
                                 var split=trip.departure.split(':');
                                 var deltaInMin=0;
-                                var addedMinutes=currentDate.getHours()*60+currentDate.getMinutes()+parseInt(split[0])*60+parseInt(split[1]);
-                                if(addedMinutes>24*60&&currentDate.getHours()>parseInt(split[0])){
-                                    deltaInMin=24*60-(currentDate.getHours()*60+currentDate.getMinutes())+parseInt(split[0])*60+parseInt(split[1]);
+                                var departurehour=parseInt(split[0]);
+				var departureminute=parseInt(split[1]);
+				var CurrentHour=currentDate.getHours();;
+
+                              
+				if(CurrentHour>23&&departurehour<12){
+                                    departurehour=departurehour+24;
                                 }
-                                else {
-                                    deltaInMin=(parseInt(split[0])*60+parseInt(split[1]))-(currentDate.getHours()*60+currentDate.getMinutes());
-                                }
+
+				deltaInMin=(departurehour-CurrentHour)*60+departureminute-currentDate.getMinutes();
+
                                 console.log(deltaInMin);
-                                console.log(currentDate.getHours());
+                                console.log(CurrentHour);
 
                                 if(deltaInMin>0&&deltaInMin<30&&deltaInMin*66.7*1.2>dist){
                                     var color='red';

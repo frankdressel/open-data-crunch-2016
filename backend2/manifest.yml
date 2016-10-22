@@ -1,0 +1,11 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: Karre
+  host: Lass-die-Karre-stehen
+  disk_quota: 1024M
+  services:
+  - KarreDB
+  command: node server.js 
