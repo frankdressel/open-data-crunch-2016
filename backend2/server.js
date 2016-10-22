@@ -31,7 +31,8 @@ app.get('/connection', function(req, res){
     });
 })
 
-var server = app.listen(8081, function () {
+var port   = process.env.PORT
+var server = app.listen(port, function () {
    var host = server.address().address
    var port = server.address().port
 
