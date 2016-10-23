@@ -32,7 +32,7 @@ var parseTime = d3.timeParse("%Y-%m-%d %H:%M");
 ].forEach(function(file) {
 d3.csv("./data/" + file, type, function(error, data) {
   var div = container.append("div"),
-    title = div.append("h2").text(file).attr("class", "filename"),
+    title = div.append("h2").append("a").text(file).attr("class", "filename").attr("href", "./data/" + file),
     svg = div.append("svg"),
     margin = {top: 20, right: 80, bottom: 30, left: 50},
     width = 1000 - margin.left - margin.right,
