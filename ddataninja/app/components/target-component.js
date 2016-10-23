@@ -6,6 +6,10 @@ export default Ember.Component.extend({
         addNewStation: function(){
             this.get('targetService').addItem(this.get('newStation'));
             this.rerender();
+        },
+        select: function(item) {
+            this.get('targetService').resort(item);
+            this.rerender();
         }
     }
 });

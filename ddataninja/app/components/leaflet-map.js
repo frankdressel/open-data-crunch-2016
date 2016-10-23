@@ -1,9 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+    targetService: Ember.inject.service(),
     classNames: ['leaflet-map'],
     didInsertElement() {
         this._super(...arguments);
+
+        var target=null;
+        if(this.get('targetService').items.length>0){
+            target=this.get('targetService').items[0];
+        }
 
         var map = L.map('map').fitWorld();
 
@@ -30,8 +36,8 @@ export default Ember.Component.extend({
 		    
 		    UTCDate.setHours(currentDate.getHours() + 2);
  
-                    if(dist<500){
-                        $.getJSON('https://lass-die-karre-stehen.mybluemix.net/connection', {'start': station.name, 'end': 'Tannenstrasse', 'time': UTCDate}, function(data){
+                    if(dist<500&&target){
+                        $.getJSON('https://lass-die-karre-stehen.mybluemix.net/connection', {'start': station.name, 'end': target, 'time': UTCDate}, function(data){
                             var trips=data.trips;
                             trips.some(function(trip){
                                 var text='';

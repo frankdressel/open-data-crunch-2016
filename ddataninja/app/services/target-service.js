@@ -1,9 +1,26 @@
 import Ember from 'ember';
 
 export default Ember.Service.extend({
-    items: ['Tannenstrasse'],
-    active: 'Tannenstrasse',
+    items: [],
+    active: null,
+    init(){
+        this._super(...arguments);
+        var ldks=localStorage.getItem('ldks');
+        if(localStorage.getItem('ldks')){
+            this.set('items', JSON.parse(localStorage.getItem('ldks')));
+        }
+        else{
+            this.set('items', []);
+        }
+    },
     addItem(newItem){
-        this.items.push(newItem);
+        this.get('items').push(newItem);
+        localStorage.setItem('ldks', JSON.stringify(this.get('items')));
+    },
+    resort(item){
+        var index=this.get('items').indexOf(item);
+        this.get('items').splice(index, 1)
+        this.get('items').splice(0, 0, item);
+        localStorage.setItem('ldks', JSON.stringify(this.get('items')));
     }
 });
