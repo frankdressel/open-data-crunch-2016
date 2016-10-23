@@ -1,5 +1,5 @@
 {{#each targetService.items as |item|}}
-    <div>
+<div {{action "select" item}}>
         {{item}}
     </div>
 {{/each}}
