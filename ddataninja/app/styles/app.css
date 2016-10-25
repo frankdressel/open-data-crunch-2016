@@ -10,12 +10,13 @@
     height: 50%;
 }
 .score img {
-    max-height: 100px;
-    max-width: 400px:
+    max-height: 200px;
+    display: inline;
 }
 .qr img {
     max-height: 400px;
-    max-width: 400px:
+    max-width: 400px;
+    display: inline;
 }
 .outer {
     height: 100vh;
