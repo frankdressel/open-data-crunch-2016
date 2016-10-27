@@ -14,13 +14,15 @@ export default Ember.Service.extend({
         }
     },
     addItem(newItem){
-        this.get('items').push(newItem);
+        var it=this.get('items');
+        it.push(Ember.Object.create({name:newItem, active: true}));
+        this.set('items', it);
         localStorage.setItem('ldks', JSON.stringify(this.get('items')));
     },
     resort(item){
         var index=this.get('items').indexOf(item);
-        this.get('items').splice(index, 1)
-        this.get('items').splice(0, 0, item);
+        this.get('items').splice(index, 1);
+        this.get('items').insertAt(0, item);
         localStorage.setItem('ldks', JSON.stringify(this.get('items')));
     }
 });
