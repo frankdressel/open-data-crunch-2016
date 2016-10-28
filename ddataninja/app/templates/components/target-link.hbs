@@ -1,3 +1,7 @@
 {{#link-to 'target'}}
-    {{item.[0].name}}
+    {{#if item.[0]}}
+        {{item.[0].name}}
+    {{else}}
+        Select target
+    {{/if}}
 {{/link-to}}
