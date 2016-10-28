@@ -41,7 +41,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // Testem prefers this...
     ENV.rootURL = '/open-data-crunch-2016';
-    ENV.locationType = 'none';
+    ENV.locationType = 'auto';
   }
 
   return ENV;
