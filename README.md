@@ -1,31 +1,36 @@
-# Open data crunch, 2016
+# Lass die Karre steh'n
 
-## Getting started
+This is a project to help you save the world! Avoid air pollution and take the bus or tram. And the best: You get a reward for it!
 
-During provisioning of the VM, the corresponding git repository will be checked out to /tmp/open-data-crunch-2016.
+![screenshot](branding/screenshot.PNG)
 
-### Requirements
+## Technical
 
-* Vagrant
+### Prepare trias data
 
-### Setup
+There is a small node server, which fires requests against the trias web interface and returns the trip request data as json to be used within the webapp. By default it runs on port 8081.
 
-Run ansible with the provided playbooks in setup-folder.
+You can start the server by:
 
-### Start web server
+  cd backend2
+  node server.js
 
-  screen -dm python -m SimpleHTTPServer
+If you run it locally, test it by calling for example [this url](http://localhost:8081/connection?start_lng=13.751272&start_lat=51.073372&end_lng=13.733651&end_lat=51.039059).
 
-## Limits
+#### Rest interface
 
-### PM2.5
+The trias data are available for the current timepoint and the following url:
 
-http://www.umweltbundesamt.de/sites/default/files/medien/1/dokumente/infoblatt_feinstaub_pm2_5.pdf
+  http(s)://<your host>:<your port>/connection?start_lng=<start coordinates, longitude>&start_lat=<start coordinates, latitude>&end_lng=<end coordinates, longitude>&end_lat=<end coordinates, latitude>
 
-25mug/m3
+### Live air quality data
 
-### PM10
+T.b.d.
 
-http://www.umweltbundesamt.de/sites/default/files/medien/1/dokumente/infoblatt_feinstaub_pm10.pdf
+### Live weather data
 
-40mug/m3
+T.b.d.
+
+### Live prediction of air quality for the next day
+
+T.b.d.

@@ -6,21 +6,21 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "4.13.x",
-    "ejs": "2.4.x",
-    "cloudant": "1.4.x",
-    "body-parser": "1.14.x",
-    "method-override": "2.3.x",
-    "morgan": "1.6.x",
-    "errorhandler": "1.4.x",
-    "connect-multiparty": "2.0.x",
     "body-parser": "^1.15.2",
+    "cloudant": "1.4.x",
+    "connect-multiparty": "2.0.x",
     "dvbjs": "^4.2.0",
+    "ejs": "2.4.x",
+    "errorhandler": "1.4.x",
     "express": "^4.14.0",
-    "moment-timezone": "^0.5.7"
+    "method-override": "2.3.x",
+    "moment-timezone": "^0.5.7",
+    "morgan": "1.6.x",
+    "xmldom": "^0.1.22",
+    "xpath": "0.0.23"
   },
   "repository": {},
   "engines": {
-  "node": "4.x"
+    "node": "4.x"
   }
 }
