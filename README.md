@@ -12,8 +12,8 @@ There is a small node server, which fires requests against the trias web interfa
 
 You can start the server by:
 
-  cd backend2
-  node server.js
+    cd backend2
+    node server.js
 
 If you run it locally, test it by calling for example [this url](http://localhost:8081/connection?start_lng=13.751272&start_lat=51.073372&end_lng=13.733651&end_lat=51.039059).
 
@@ -21,7 +21,7 @@ If you run it locally, test it by calling for example [this url](http://localhos
 
 The trias data are available for the current timepoint and the following url:
 
-  http(s)://<your host>:<your port>/connection?start_lng=<start coordinates, longitude>&start_lat=<start coordinates, latitude>&end_lng=<end coordinates, longitude>&end_lat=<end coordinates, latitude>
+    http(s)://<your host>:<your port>/connection?start_lng=<start coordinates, longitude>&start_lat=<start coordinates, latitude>&end_lng=<end coordinates, longitude>&end_lat=<end coordinates, latitude>
 
 ### Live air quality data
 
