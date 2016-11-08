@@ -25,7 +25,7 @@ app.get('/connection', function(req, res){
         '<?xml version="1.0" encoding="UTF-8"?>'+
         '<Trias version="1.0" xmlns="trias" xmlns:siri="http://www.siri.org.uk/siri" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
         '<ServiceRequest>'+
-            '<siri:RequestTimestamp>'+time.toISOString()+'</siri:RequestTimestamp>'+
+            '<siri:RequestTimestamp>'+time.toISOString().split('T')[0]+'T'+time.toLocaleTimeString('de-DE', {hour12:false})+'</siri:RequestTimestamp>'+
             '<siri:RequestorRef>SEUS</siri:RequestorRef>'+
             '<RequestPayload>'+
                 '<TripRequest>'+
@@ -41,7 +41,7 @@ app.get('/connection', function(req, res){
                                 '<Text></Text>'+
                             '</LocationName>'+
                         '</LocationRef>'+
-                        '<DepArrTime>'+time.toISOString()+'</DepArrTime>'+
+                        '<DepArrTime>'+time.toISOString().split('T')[0]+'T'+time.toLocaleTimeString('de-DE', {hour12:false})+'</DepArrTime>'+
                     '</Origin>'+
                     '<Destination>'+
                         '<LocationRef>'+
@@ -63,6 +63,8 @@ app.get('/connection', function(req, res){
             '</RequestPayload>'+
         '</ServiceRequest>'+
         '</Trias>';
+
+    console.log(requestData);
 
     // An object of options to indicate where to post to
     var post_options = {
@@ -109,8 +111,8 @@ app.get('/connection', function(req, res){
     });
 
     // post the data
-    post_req.write(requestData);
-    post_req.end();
+    //post_req.write(requestData);
+    //post_req.end();
 
 
 });
