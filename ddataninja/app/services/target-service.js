@@ -14,7 +14,7 @@ export default Ember.Service.extend({
         }
     },
     addItem(newItem){
-        this.get('items').insertAt(this.get('items').length, Ember.Object.create({name:newItem, active: true}));
+        this.get('items').insertAt(this.get('items').length, newItem);
         localStorage.setItem('ldks', JSON.stringify(this.get('items')));
     },
     resort(item){
