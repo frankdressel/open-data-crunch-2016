@@ -64,7 +64,7 @@ app.get('/connection', function(req, res){
         '</ServiceRequest>'+
         '</Trias>';
 
-    console.log(requestData);
+    console.log('Handling request: '+new Date());
 
     // An object of options to indicate where to post to
     var post_options = {
@@ -111,8 +111,8 @@ app.get('/connection', function(req, res){
     });
 
     // post the data
-    //post_req.write(requestData);
-    //post_req.end();
+    post_req.write(requestData);
+    post_req.end();
 
 
 });
