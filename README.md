@@ -17,6 +17,12 @@ You can start the server by:
 
 If you run it locally, test it by calling for example [this url](http://localhost:8081/connection?start_lng=13.751272&start_lat=51.073372&end_lng=13.733651&end_lat=51.039059).
 
+For the first time start you have to do:
+
+    cd backend2
+    npm install
+    node server.js
+
 #### Rest interface
 
 The trias data are available for the current timepoint and the following url:
