@@ -10,7 +10,7 @@
     "cloudant": "1.4.x",
     "connect-multiparty": "2.0.x",
     "dvbjs": "^4.2.0",
-    "ejs": "2.4.x",
+    "ejs": ">=2.5.5",
     "errorhandler": "1.4.x",
     "express": "^4.14.0",
     "method-override": "2.3.x",
