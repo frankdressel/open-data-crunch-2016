@@ -15,7 +15,7 @@
     "express": "^4.14.0",
     "method-override": "2.3.x",
     "moment-timezone": "^0.5.7",
-    "morgan": "1.6.x",
+    "morgan": ">=1.9.1",
     "xmldom": "^0.1.22",
     "xpath": "0.0.23"
   },
